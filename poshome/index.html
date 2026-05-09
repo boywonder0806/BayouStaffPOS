@@ -79,11 +79,35 @@
       text-align: center;
       letter-spacing: 0.01em;
     }
+
+    .welcome {
+      color: #ffffff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .welcome-text {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .datetime {
+      font-size: 1rem;
+      opacity: 0.85;
+      font-weight: 400;
+    }
   </style>
 </head>
 <body>
 
   <img src="BlueBayou_v2 copy.png" alt="Blue Bayou" class="site-logo" />
+
+  <div class="welcome">
+    <span class="welcome-text">Welcome, Staff!</span>
+    <span class="datetime" id="datetime"></span>
+  </div>
 
   <div class="cards">
 
@@ -117,5 +141,25 @@
 
   </div>
 
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const options = {
+        timeZone: 'America/Chicago',
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      };
+      document.getElementById('datetime').textContent =
+        now.toLocaleString('en-US', options) + ' CT';
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  </script>
 </body>
 </html>
